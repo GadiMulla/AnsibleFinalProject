@@ -1,0 +1,4 @@
+---
+- hosts: vboxuser
+  roles:
+    - my_role

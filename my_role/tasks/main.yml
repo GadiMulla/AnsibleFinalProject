@@ -1,0 +1,38 @@
+---
+- name: Install required packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - htop
+    - tree
+
+- name: Update system
+  package:
+    name: '*'
+    state: latest
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
+
+- name: Install Apache/httpd on RedHat
+  package:
+    name: httpd
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Apache/httpd on Debian
+  package:
+    name: apache2
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Copy files to hosts
+  copy:
+    src: /home/gadi/Ansible/Final_Project/my_role/files/1.txt
+    dest: /home/vboxuser/Ansible
+
+- name: Print number of RedHat and Debian hosts
+  debug:
+    msg: "RedHat hosts: {{ groups['redhat'] | length }}, Debian hosts: {{ groups['debian'] | length }}"
+  when: inventory_hostname == groups['all'] | first
+
+
