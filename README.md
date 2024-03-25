@@ -1,5 +1,4 @@
 # AnsibleFinalProject
-# Ansible Role: my_role
 
 This Ansible role performs the following tasks:
 
@@ -20,7 +19,7 @@ ansible-galaxy install username.my_role
 
 This role requires Ansible to be installed on the control node. Ensure that your target hosts are reachable and properly configured for Ansible connectivity.
 
-## Usage
+# Usage
 To use this role in your playbook, include it in the roles section:
 
 - hosts: all
